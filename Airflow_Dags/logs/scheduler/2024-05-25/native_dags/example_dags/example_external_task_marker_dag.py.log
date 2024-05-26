@@ -1,0 +1,40 @@
+[2024-05-25T04:42:23.674+0000] {processor.py:161} INFO - Started process (PID=47) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:23.675+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py for tasks to queue
+[2024-05-25T04:42:23.677+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.676+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:23.683+0000] {processor.py:840} INFO - DAG(s) 'example_external_task_marker_child', 'example_external_task_marker_parent' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:23.701+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.701+0000] {dag.py:3096} INFO - Sync 2 DAGs
+[2024-05-25T04:42:23.712+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.711+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_child to None, run_after=None
+[2024-05-25T04:42:23.715+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.715+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_parent to None, run_after=None
+[2024-05-25T04:42:23.728+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py took 0.058 seconds
+[2024-05-25T04:42:53.752+0000] {processor.py:161} INFO - Started process (PID=106) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:53.753+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py for tasks to queue
+[2024-05-25T04:42:53.755+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:53.754+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:53.759+0000] {processor.py:840} INFO - DAG(s) 'example_external_task_marker_child', 'example_external_task_marker_parent' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:42:53.776+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:53.775+0000] {dag.py:3096} INFO - Sync 2 DAGs
+[2024-05-25T04:42:53.786+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:53.786+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_child to None, run_after=None
+[2024-05-25T04:42:53.789+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:53.789+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_parent to None, run_after=None
+[2024-05-25T04:42:53.802+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py took 0.054 seconds
+[2024-05-25T04:43:24.616+0000] {processor.py:161} INFO - Started process (PID=167) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:24.617+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py for tasks to queue
+[2024-05-25T04:43:24.618+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.618+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:24.622+0000] {processor.py:840} INFO - DAG(s) 'example_external_task_marker_parent', 'example_external_task_marker_child' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:24.640+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.640+0000] {dag.py:3096} INFO - Sync 2 DAGs
+[2024-05-25T04:43:24.650+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.650+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_child to None, run_after=None
+[2024-05-25T04:43:24.653+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.653+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_parent to None, run_after=None
+[2024-05-25T04:43:24.664+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py took 0.053 seconds
+[2024-05-25T04:43:55.250+0000] {processor.py:161} INFO - Started process (PID=227) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:55.250+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py for tasks to queue
+[2024-05-25T04:43:55.252+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.251+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:55.256+0000] {processor.py:840} INFO - DAG(s) 'example_external_task_marker_parent', 'example_external_task_marker_child' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:43:55.271+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.271+0000] {dag.py:3096} INFO - Sync 2 DAGs
+[2024-05-25T04:43:55.281+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.281+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_child to None, run_after=None
+[2024-05-25T04:43:55.284+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.284+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_parent to None, run_after=None
+[2024-05-25T04:43:55.294+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py took 0.049 seconds
+[2024-05-25T04:44:25.533+0000] {processor.py:161} INFO - Started process (PID=287) to work on /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:44:25.534+0000] {processor.py:830} INFO - Processing file /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py for tasks to queue
+[2024-05-25T04:44:25.536+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.536+0000] {dagbag.py:545} INFO - Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:44:25.541+0000] {processor.py:840} INFO - DAG(s) 'example_external_task_marker_parent', 'example_external_task_marker_child' retrieved from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py
+[2024-05-25T04:44:25.560+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.560+0000] {dag.py:3096} INFO - Sync 2 DAGs
+[2024-05-25T04:44:25.576+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.576+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_child to None, run_after=None
+[2024-05-25T04:44:25.581+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.581+0000] {dag.py:3954} INFO - Setting next_dagrun for example_external_task_marker_parent to None, run_after=None
+[2024-05-25T04:44:25.596+0000] {processor.py:183} INFO - Processing /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_external_task_marker_dag.py took 0.067 seconds

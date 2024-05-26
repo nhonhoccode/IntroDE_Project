@@ -1,0 +1,692 @@
+{% load custom_filters %}
+<div class="card mb-4">
+    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <i class="fas fa-table me-1"></i>
+            Data Table
+        </div>
+        <div class="simulation-right" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap;">
+            <form id="pagination-form"  role="form" action="" method="GET" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap;">
+                <div class="form-group select-with-icon" style="margin-right: 10px;">
+                    <select class="form-control" data-toggle="tooltip" data-placement="top" title="Sort by" style="width: 95px;" name="sortBy" id="sortSelect">
+                        <option value="user_id" {% if sortBy == "user_id" %}selected{% endif %}>User ID</option>
+                        <option value="basket_icon_click" {% if sortBy == "basket_icon_click" %}selected{% endif %}>Basket icon click</option>
+                        <option value="basket_add_list" {% if sortBy == "basket_add_list" %}selected{% endif %}>Basket add list</option>
+                        <option value="basket_add_detail" {% if sortBy == "basket_add_detail" %}selected{% endif %}>Basket add detail</option>
+                        <option value="sort_by" {% if sortBy == "sort_by" %}selected{% endif %}>Sort by</option>
+                        <option value="image_picker" {% if sortBy == "image_picker" %}selected{% endif %}>Image picker</option>
+                        <option value="account_page_click" {% if sortBy == "account_page_click" %}selected{% endif %}>Account page click</option>
+                        <option value="promo_banner_click" {% if sortBy == "promo_banner_click" %}selected{% endif %}>Promo banner click</option>
+                        <option value="detail_wishlist_add" {% if sortBy == "detail_wishlist_add" %}selected{% endif %}>Detail wishlist add</option>
+                        <option value="list_size_dropdown" {% if sortBy == "list_size_dropdown" %}selected{% endif %}>List size dropdown</option>
+                        <option value="closed_minibasket_click" {% if sortBy == "closed_minibasket_click" %}selected{% endif %}>Closed minibasket click</option>
+                        <option value="checked_delivery_detail" {% if sortBy == "checked_delivery_detail" %}selected{% endif %}>Checked delivery detail</option>
+                        <option value="checked_returns_detail" {% if sortBy == "checked_returns_detail" %}selected{% endif %}>Checked returns detail</option>
+                        <option value="sign_in" {% if sortBy == "sign_in" %}selected{% endif %}>Sign in</option>
+                        <option value="saw_checkout" {% if sortBy == "saw_checkout" %}selected{% endif %}>Saw checkout</option>
+                        <option value="saw_sizecharts" {% if sortBy == "saw_sizecharts" %}selected{% endif %}>Saw sizecharts</option>
+                        <option value="saw_delivery" {% if sortBy == "saw_delivery" %}selected{% endif %}>Saw delivery</option>
+                        <option value="saw_account_upgrade" {% if sortBy == "saw_account_upgrade" %}selected{% endif %}>Saw account upgrade</option>
+                        <option value="saw_homepage" {% if sortBy == "saw_homepage" %}selected{% endif %}>Saw homepage</option>
+                        <option value="device_computer" {% if sortBy == "device_computer" %}selected{% endif %}>Device computer</option>
+                        <option value="device_tablet" {% if sortBy == "device_tablet" %}selected{% endif %}>Device tablet</option>
+                        <option value="returning_user" {% if sortBy == "returning_user" %}selected{% endif %}>Returning user</option>
+                        <option value="loc_uk" {% if sortBy == "loc_uk" %}selected{% endif %}>Loc uk</option>
+                        <option value="propensity" {% if sortBy == "propensity" %}selected{% endif %}>Propensity</option>
+                        <option value="created_at" {% if sortBy == "created_at" %}selected{% endif %}>Created at</option>
+                        <option value="updated_at" {% if sortBy == "updated_at" %}selected{% endif %}>Updated at</option>
+                        <option value="score" {% if sortBy == "score" %}selected{% endif %}>Score</option>
+                    </select>
+                </div>                
+                <div class="form-group select-with-icon" style="margin-right: 10px;">
+                    <select class="form-control" data-toggle="tooltip" data-placement="top" title="Sort Order" style="width: 95px;" name="sort_order" id="sortOrderSelect">
+                        <option value="asc" {% if sort_order == "asc" %}selected{% endif %}>Ascending</option>
+                        <option value="desc" {% if sort_order == "desc" %}selected{% endif %}>Descending</option>
+                    </select>   
+                </div>
+                <div class="form-group select-with-icon" style="margin-right: 10px;">
+                    <select class="form-control" data-toggle="tooltip" data-placement="top" title="Level of potential customers" style="width: 95px;" name="filter" id="filterSelect">
+                        <option value="All" {% if select == "All" %}selected{% endif %}>All</option>
+                        <option value="Level 1" {% if select == "Level 1" %}selected{% endif %}>Level 1</option>
+                        <option value="Level 2" {% if select == "Level 2" %}selected{% endif %}>Level 2</option>
+                        <option value="Level 3" {% if select == "Level 3" %}selected{% endif %}>Level 3</option>
+                    </select>   
+                </div>
+                <div class="input-group me-2" style="margin-right: 10px;" data-toggle="tooltip" data-placement="top" title="Number data">
+                    <input type="number" value="{{ number }}" style="width: 70px;" min="10" id="number" name="number" class="form-control" aria-describedby="basic-addon2" onchange="updateNumber()">
+                </div>
+                <div class="input-group me-2" style="margin-right: 10px;" data-toggle="tooltip" data-placement="top" title="Search user ID">
+                    <input type="text" name="search" class="form-control" placeholder="Search user ID..." aria-label="Search" aria-describedby="basic-addon2" style="width: 130px;"> 
+                </div>
+            </form>
+            <button class="btn btn-sm btn-primary" data-toggle="modal" data-placement="top" title="Filter" data-target="#filterModal" style="display: flex; align-items: center; white-space: nowrap; margin-right: 10px;">
+                <span class="fa fa-filter" style="display: inline-block;"></span>&nbsp; Filter
+            </button>
+            <a class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete All" href="{% url 'delete_all' %}" style="display: flex; align-items: center; white-space: nowrap; margin-right: 10px;">
+                <span class="fa fa-trash" style="display: inline-block;"></span>&nbsp; Delete All
+            </a>
+            <a class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Export file" href="{% url 'save_file' %}" style="display: flex; align-items: center; white-space: nowrap; margin-right: 10px;">
+                <span class="fa fa-download" style="display: inline-block;"></span>&nbsp; Export
+            </a>
+        </div>
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Filters</h5>
+                        <div>
+                            <button type="button" class="btn btn-secondary" id="default-filter">Default</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none;background: none;">
+                                <span aria-hidden="true" style="font-size: 30px;">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="is-selected mb-3">
+                            <div class="label-select">Is selected</div>
+                            <div class="frame-selected">
+                                {% for col in value_col %}
+                                    {% if col != "N" %}
+                                        <div class="item">{{col}}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="not-selected">
+                            <div class="label-select">Not selected</div>
+                            <div class="frame-not-selected">
+                                {% for col in value_not_col %}
+                                    {% if col != "N" %}
+                                        <div class="item">{{col}}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="save-filters">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <div class="card-body">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert" id="message">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="table-data">
+            <div class="table-responsive">
+                <table id="datatablesSimple1" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th style="white-space: nowrap;">User ID</th>
+                            {% for col in value_col %}
+                                {% if col != "N" %}
+                                <th>{{ col }}</th>
+                                {% endif %}
+                            {% endfor %}
+                            <th style="color: green;">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                            <tr>
+                                <td>
+                                    <div style="display: flex; gap: 10px; align-items: center;">
+                                        <a class="btn btn-sm btn-danger" id="del" href="{% url 'delete' i.user_id %}" data-toggle="tooltip" data-placement="top" style="display: flex; align-items: center; white-space: nowrap;" title="Delete {{ i.user_id }}">
+                                            <span class="fa fa-trash" style="margin-right: 3px;"></span>Delete
+                                        </a>
+                                        <a class="btn btn-sm btn-success" id="edit" href="#" data-toggle="modal" data-placement="top" title="Editer" data-target="#EditModal" style="display: flex; align-items: center; white-space: nowrap;" title="Edit {{ i.user_id }}">
+                                            <span class="fa fa-edit" style="margin-right: 3px;"></span>Edit
+                                        </a>
+                                    </div>
+                                </td>                                
+                                <td style="white-space: nowrap; cursor: pointer; color: rgb(17, 60, 153); text-decoration: underline;" data-toggle="modal" data-target="#userModal">
+                                    {{ i.user_id }}
+                                </td>
+                                {% for key in key_col %}
+                                    {% if key != "N" %}
+                                        <td>{{ i|get_item:key }}</td>
+                                    {% else %}
+                                        
+                                    {% endif %}
+                                {% endfor %}
+                                <td style="color: green;">{{ i.score }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none;background: none;">
+                                            <span aria-hidden="true" style="font-size: 30px;">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="save-editer">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">UserID information</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="border: none;background: none;">
+                                        <span aria-hidden="true" style="font-size: 30px;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="info-user-id"></div>
+                                    <div class="info-score"></div>
+                                    <div class="info-level"></div>
+                                    <div class="info-rank"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>             
+                </table>
+            </div>
+            <nav id="pagination-nav" aria-label="Page navigation" style="margin-top: 10px;margin-bottom: 0;">
+                <ul class="pagination justify-content-end">
+                    {% if data.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1&sortBy={{ sortBy }}&select={{ select }}&number={{ number }}" aria-label="First">
+                                <span aria-hidden="true">&laquo; first</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ data.previous_page_number }}&sortBy={{ sortBy }}&select={{ select }}&number={{ number }}" aria-label="Previous">
+                                <span aria-hidden="true">previous</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo; first</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Page {{ data.number }} of {{ data.paginator.num_pages }}</a>
+                    </li>
+            
+                    {% if data.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ data.next_page_number }}&sortBy={{ sortBy }}&select={{ select }}&number={{ number }}" aria-label="Next">
+                                <span aria-hidden="true">next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ data.paginator.num_pages }}&sortBy={{ sortBy }}&select={{ select }}&number={{ number }}" aria-label="Last">
+                                <span aria-hidden="true">last &raquo;</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">next</a>
+                        </li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">last &raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+function highlightSearch() {
+    var searchInput = document.querySelector("input[name='search']");
+    searchInput.addEventListener("input", function() {
+        var value = this.value.toLowerCase();
+        var rows = document.querySelectorAll("table tbody tr"); 
+        rows.forEach(function(row) {
+            var userID = row.querySelector("td:nth-child(2)");
+            var text = userID.textContent.toLowerCase();
+            if (text.indexOf(value) > -1) {
+                row.style.display = "table-row";
+                userID.innerHTML = text.replace(value, "<span class='highlight'>" + value + "</span>");
+            } else {
+                row.style.display = "none";
+                userID.innerHTML = text;
+            }
+        });
+    });
+}
+function handlePaginationClick() {
+    const paginationLinks = document.querySelectorAll('#pagination-nav .page-link');
+
+    paginationLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            // event.preventDefault();
+            const scrollPosition = window.scrollY;
+            const url = event.target.closest('a').href;
+
+            // Store the scroll position in localStorage
+            localStorage.setItem('scrollPosition', scrollPosition);
+
+            // Navigate to the new page
+            window.location.href = url;
+        });
+    });
+}
+
+function restoreScrollPosition() {
+    const storedScrollPosition = localStorage.getItem('scrollPosition');
+    if (storedScrollPosition !== null) {
+        window.scrollTo(0, parseInt(storedScrollPosition, 10));
+        localStorage.removeItem('scrollPosition');
+    }
+}
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim(); 
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function fetchNumber() {
+    var number = document.querySelector("input[name='number']");
+    number.addEventListener("input", function() {
+        var value = this.value; 
+        fetch(`http://127.0.0.1:8000/api/number/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ number: value }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Lỗi mạng');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dữ liệu đã cập nhật:', data);
+            })
+            .catch(error => {
+                console.error('Lỗi:', error.message);
+                alert('Đã xảy ra lỗi khi cập nhật số: ' + error.message);
+            }); 
+    });
+    
+}
+function updateNumber() {
+    var number = document.querySelector("input[name='number']");
+    var filter = document.querySelector("#filterSelect");
+    var sort_by = document.querySelector("#sortSelect");
+    var sort_order = document.querySelector("#sortOrderSelect");
+    number.addEventListener("input", function() {
+        number.form.submit();
+        number.textContent = number.value;
+        filter.textContent = filter.value;
+        sort_by.textContent = sort_by.value;
+        sort_order.textContent = sort_order.value;
+    });
+    filter.addEventListener("change", function() {
+        console.log('change');
+        filter.form.submit();
+        number.textContent = number.value;
+        filter.textContent = filter.value;
+        sort_by.textContent = sort_by.value;
+        sort_order.textContent = sort_order.value;
+    });
+    sort_by.addEventListener("change", function() {
+        console.log('change');
+        sort_by.form.submit();
+        number.textContent = number.value;
+        filter.textContent = filter.value;
+        sort_by.textContent = sort_by.value;
+        sort_order.textContent = sort_order.value;
+    });
+    sort_order.addEventListener("change", function() {
+        console.log('change');
+        sort_order.form.submit();
+        number.textContent = number.value;
+        filter.textContent = filter.value;
+        sort_by.textContent = sort_by.value;
+        sort_order.textContent = sort_order.value;
+    });
+}
+
+function analysisUserID(){
+    const allUserID = document.querySelectorAll("tbody td:nth-child(2)");
+    allUserID.forEach(function(userID) {
+        userID.addEventListener("click", function() {
+            const userIDValue = userID.textContent;
+            const csrftoken = getCookie('csrftoken');
+
+            if (!csrftoken) {
+                console.error('Không tìm thấy CSRF token');
+                return;
+            }
+
+            fetch('http://127.0.0.1:8000/api/analysis-userID/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({ user_id: userIDValue }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Lỗi phản hồi từ server:', response.status, response.statusText);
+                    throw new Error('Lỗi mạng');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dữ liệu đã cập nhật:', data);
+                const infoUserID = document.querySelector('.info-user-id');
+                const infoScore = document.querySelector('.info-score');
+                const infoLevel = document.querySelector('.info-level');
+                const rank = document.querySelector('.info-rank');
+                infoUserID.innerHTML = '';
+                infoScore.innerHTML = '';
+                infoLevel.innerHTML = '';
+                rank.innerHTML = '';
+                infoUserID.innerHTML = `<strong>User ID:</strong> ${data.data.user_id}`;
+                infoScore.innerHTML = `<strong>Score:</strong> ${data.data.score}`;
+                if (parseFloat(data.data.score) > 30){
+                    infoLevel.innerHTML = `<strong>Level:</strong> Level 1`;
+                    rank.innerHTML = `<strong>Rank:</strong> Gold <i class="fas fa-medal" style="color: gold;"></i>`;
+                } else if (parseFloat(data.data.score) > 20){
+                    infoLevel.innerHTML = `<strong>Level:</strong> Level 2`;
+                    rank.innerHTML = `<strong>Rank:</strong> Silver <i class="fas fa-medal" style="color: silver;"></i>`;
+                } else if (parseFloat(data.data.score) > 10) {
+                    infoLevel.innerHTML = `<strong>Level:</strong> Level 3`;
+                    rank.innerHTML = `<strong>Rank:</strong> Bronze <i class="fas fa-medal" style="color: #cd7f32;"></i>`;
+                } else {
+                    rank.innerHTML = `<strong>Rank:</strong> Normal`;
+                }
+            })
+            .catch(error => {
+                console.error('Lỗi:', error.message);
+            });
+        });
+    });
+}
+function isSelect(){
+    $(document).ready(function(){
+        $('.frame-selected').on('click', '.item', function(){
+            $(this).appendTo('.frame-not-selected');
+        });
+
+        $('.frame-not-selected').on('click', '.item', function(){
+            $(this).appendTo('.frame-selected');
+        });
+    });
+}
+function saveFilter(){
+    var selected = document.querySelector('.frame-selected');
+    var notSelected = document.querySelector('.frame-not-selected');
+    var selectedItems = selected.querySelectorAll('.item');
+    var notSelectedItems = notSelected.querySelectorAll('.item');
+    var selectedValues = [];
+    var notSelectedValues = [];
+
+    selectedItems.forEach(function(item) {
+        selectedValues.push(item.textContent);
+    });
+
+    notSelectedItems.forEach(function(item) {
+        notSelectedValues.push(item.textContent);
+    });
+
+    //  gửi yêu cầu về server
+    const formData = new FormData();
+    const csrftoken = getCookie('csrftoken');
+
+    formData.append('selected', selectedValues);
+    formData.append('notselected', notSelectedValues);
+    fetch('http://127.0.0.1:8000/api/is-selected/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+        },
+        body: formData,
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Lỗi phản hồi từ server:', response.status, response.statusText);
+            throw new Error('Lỗi mạng');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Lỗi:', error.message);
+    });
+}
+function defaultFilter(){
+    const defaultFilter = document.querySelector('#default-filter');
+    const selected = document.querySelector('.frame-selected');
+    const notSelected = document.querySelector('.frame-not-selected');
+    defaultFilter.addEventListener('click', function() {
+        selected.innerHTML = '';
+        notSelected.innerHTML = '';
+        selected.innerHTML = `
+            <div class="item">Basket icon click</div>
+            <div class="item">Basket add list</div>
+            <div class="item">Basket add detail</div>
+            <div class="item">Sort by</div>
+            <div class="item">Image picker</div>
+            <div class="item">Account page click</div>
+            <div class="item">Promo banner click</div>
+            <div class="item">Detail wishlist add</div>
+            <div class="item">List size dropdown</div>
+            <div class="item">Closed minibasket click</div>
+            <div class="item">Checked delivery detail</div>
+            <div class="item">Checked returns detail</div>
+            <div class="item">Sign in</div>
+            <div class="item">Saw checkout</div>
+            <div class="item">Saw sizecharts</div>
+            <div class="item">Saw delivery</div>
+            <div class="item">Saw account upgrade</div>
+            <div class="item">Saw homepage</div>
+            <div class="item">Device computer</div>
+            <div class="item">Device tablet</div>
+            <div class="item">Returning user</div>
+            <div class="item">Loc uk</div>
+            <div class="item">Propensity</div>
+        `;
+
+    });
+
+}
+function infoSusscess(text) {
+    $(document).ready(function() {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "1500",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        toastr.success(text);
+    });
+}
+function editData(){
+    const name_col = [
+        'Basket icon click', 'Basket add list', 'Basket add detail', 'Sort by', 'Image picker', 
+        'Account page click', 'Promo banner click', 'Detail wishlist add', 'List size dropdown', 
+        'Closed minibasket click', 'Checked delivery detail', 'Checked returns detail', 'Sign in', 
+        'Saw checkout', 'Saw sizecharts', 'Saw delivery', 'Saw account upgrade', 'Saw homepage', 
+        'Device computer', 'Device tablet', 'Returning user', 'Loc uk'
+    ];
+    var userID;
+    const editModal = document.querySelector('#EditModal .modal-body');
+    const allRows = document.querySelectorAll("tbody tr");
+
+    allRows.forEach(row => {
+        const editButton = row.querySelector('#edit');
+        editButton.addEventListener('click', () => {
+            const l_edit = [];
+            const userID0 = row.querySelector('td:nth-child(2)').textContent;
+            userID = userID0;
+
+            document.querySelector('#EditModal .modal-title').textContent = `Edit: ${userID0}`;
+
+            // for (let i = 3; i <= 24; i++) {
+            //     l_edit.push(row.querySelector(`td:nth-child(${i})`).textContent);
+            // }
+            
+            const formData = new FormData();
+            formData.append('user_id', userID0);
+            fetch(`http://127.0.0.1:8000/api/get-data/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Lỗi mạng');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('get data:', data.data);
+                l_edit.push(parseInt(data.data.basket_icon_click));
+                l_edit.push(parseInt(data.data.basket_add_list));
+                l_edit.push(parseInt(data.data.basket_add_detail));
+                l_edit.push(parseInt(data.data.sort_by));
+                l_edit.push(parseInt(data.data.image_picker));
+                l_edit.push(parseInt(data.data.account_page_click));
+                l_edit.push(parseInt(data.data.promo_banner_click));
+                l_edit.push(parseInt(data.data.detail_wishlist_add));
+                l_edit.push(parseInt(data.data.list_size_dropdown));
+                l_edit.push(parseInt(data.data.closed_minibasket_click));
+                l_edit.push(parseInt(data.data.checked_delivery_detail));
+                l_edit.push(parseInt(data.data.checked_returns_detail));
+                l_edit.push(parseInt(data.data.sign_in));
+                l_edit.push(parseInt(data.data.saw_checkout));
+                l_edit.push(parseInt(data.data.saw_sizecharts));
+                l_edit.push(parseInt(data.data.saw_delivery));
+                l_edit.push(parseInt(data.data.saw_account_upgrade));
+                l_edit.push(parseInt(data.data.saw_homepage));
+                l_edit.push(parseInt(data.data.device_computer));
+                l_edit.push(parseInt(data.data.device_tablet));
+                l_edit.push(parseInt(data.data.returning_user));
+                l_edit.push(parseInt(data.data.loc_uk));
+                console.log('l_edit:', l_edit);
+
+                editModal.innerHTML = '';
+                const newDiv = document.createElement("div");
+                newDiv.className = "row";
+                editModal.appendChild(newDiv);
+
+                l_edit.forEach((value, index) => {
+                    const checked = value == 1 ? 'checked' : '';
+                    newDiv.innerHTML += `
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <label class="form-label">${name_col[index]}</label>
+                                <div class="form-check form-switch ms-auto">
+                                    <input class="form-check-input" type="checkbox" id="${name_col[index].toLowerCase()}" name="${name_col[index].toLowerCase()}" ${checked}>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error('Lỗi:', error);
+            });
+        });
+    });
+
+    const saveEditer = document.querySelector('#save-editer');
+    saveEditer.addEventListener('click', function() {
+        const list_checkbox = editModal.querySelectorAll('.form-check-input');
+        const list_input = [];
+        list_checkbox.forEach(function(checkbox) {
+            if (checkbox.checked === true) {
+                list_input.push(1);
+            } else {
+                list_input.push(0);
+            }
+        });
+        const formData = new FormData();
+        formData.append('user_id', userID);
+        formData.append('list_input', list_input);
+        fetch(`http://127.0.0.1:8000/api/edit-userID/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: formData,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Lỗi mạng');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Dữ liệu đã cập nhật:', data);
+            infoSusscess(data.data);
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() { 
+    highlightSearch();
+    handlePaginationClick();
+    restoreScrollPosition();
+    updateNumber();
+    analysisUserID();
+    isSelect();
+
+    const saveFilters = document.querySelector('#save-filters');
+    saveFilters.addEventListener('click', function() {
+        saveFilter();
+    });
+    defaultFilter();
+    editData();
+});
+</script>

@@ -1,0 +1,35 @@
+[2024-05-25T04:42:23.115+0000] {processor.py:161} INFO - Started process (PID=38) to work on /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:23.115+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_with_customer_sqlite3.py for tasks to queue
+[2024-05-25T04:42:23.117+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.117+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:23.534+0000] {processor.py:840} INFO - DAG(s) 'Customer_Prosensity_DAG' retrieved from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:23.559+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.559+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-25T04:42:23.567+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:23.567+0000] {dag.py:3954} INFO - Setting next_dagrun for Customer_Prosensity_DAG to None, run_after=None
+[2024-05-25T04:42:23.579+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_with_customer_sqlite3.py took 0.468 seconds
+[2024-05-25T04:42:53.674+0000] {processor.py:161} INFO - Started process (PID=103) to work on /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:53.675+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_with_customer_sqlite3.py for tasks to queue
+[2024-05-25T04:42:53.676+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:53.676+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:54.022+0000] {processor.py:840} INFO - DAG(s) 'Customer_Prosensity_DAG' retrieved from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:42:54.036+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:54.036+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-25T04:42:54.043+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:42:54.043+0000] {dag.py:3954} INFO - Setting next_dagrun for Customer_Prosensity_DAG to None, run_after=None
+[2024-05-25T04:42:54.057+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_with_customer_sqlite3.py took 0.386 seconds
+[2024-05-25T04:43:24.165+0000] {processor.py:161} INFO - Started process (PID=158) to work on /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:24.166+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_with_customer_sqlite3.py for tasks to queue
+[2024-05-25T04:43:24.167+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.167+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:24.497+0000] {processor.py:840} INFO - DAG(s) 'Customer_Prosensity_DAG' retrieved from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:24.511+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.511+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-25T04:43:24.519+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:24.519+0000] {dag.py:3954} INFO - Setting next_dagrun for Customer_Prosensity_DAG to None, run_after=None
+[2024-05-25T04:43:24.532+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_with_customer_sqlite3.py took 0.372 seconds
+[2024-05-25T04:43:54.816+0000] {processor.py:161} INFO - Started process (PID=218) to work on /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:54.817+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_with_customer_sqlite3.py for tasks to queue
+[2024-05-25T04:43:54.818+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:54.818+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:55.141+0000] {processor.py:840} INFO - DAG(s) 'Customer_Prosensity_DAG' retrieved from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:43:55.154+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.154+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-25T04:43:55.162+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:43:55.162+0000] {dag.py:3954} INFO - Setting next_dagrun for Customer_Prosensity_DAG to None, run_after=None
+[2024-05-25T04:43:55.173+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_with_customer_sqlite3.py took 0.361 seconds
+[2024-05-25T04:44:25.255+0000] {processor.py:161} INFO - Started process (PID=282) to work on /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:44:25.256+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_with_customer_sqlite3.py for tasks to queue
+[2024-05-25T04:44:25.257+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.257+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:44:25.623+0000] {processor.py:840} INFO - DAG(s) 'Customer_Prosensity_DAG' retrieved from /opt/airflow/dags/dag_with_customer_sqlite3.py
+[2024-05-25T04:44:25.637+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.637+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-05-25T04:44:25.646+0000] {logging_mixin.py:188} INFO - [2024-05-25T04:44:25.646+0000] {dag.py:3954} INFO - Setting next_dagrun for Customer_Prosensity_DAG to None, run_after=None
+[2024-05-25T04:44:25.661+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_with_customer_sqlite3.py took 0.410 seconds

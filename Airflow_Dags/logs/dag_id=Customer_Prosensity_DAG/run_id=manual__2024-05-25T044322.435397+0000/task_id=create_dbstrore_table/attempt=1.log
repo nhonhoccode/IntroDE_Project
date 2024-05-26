@@ -1,0 +1,81 @@
+[2024-05-25T04:43:26.100+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-25T04:43:26.113+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: Customer_Prosensity_DAG.create_dbstrore_table manual__2024-05-25T04:43:22.435397+00:00 [queued]>
+[2024-05-25T04:43:26.118+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: Customer_Prosensity_DAG.create_dbstrore_table manual__2024-05-25T04:43:22.435397+00:00 [queued]>
+[2024-05-25T04:43:26.119+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 6
+[2024-05-25T04:43:26.126+0000] {taskinstance.py:2330} INFO - Executing <Task(SQLExecuteQueryOperator): create_dbstrore_table> on 2024-05-25 04:43:22.435397+00:00
+[2024-05-25T04:43:26.131+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=77) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-05-25T04:43:26.133+0000] {standard_task_runner.py:63} INFO - Started process 79 to run task
+[2024-05-25T04:43:26.133+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'Customer_Prosensity_DAG', 'create_dbstrore_table', 'manual__2024-05-25T04:43:22.435397+00:00', '--job-id', '4421', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_customer_sqlite3.py', '--cfg-path', '/tmp/tmpc9stw6yh']
+[2024-05-25T04:43:26.134+0000] {standard_task_runner.py:91} INFO - Job 4421: Subtask create_dbstrore_table
+[2024-05-25T04:43:26.164+0000] {task_command.py:426} INFO - Running <TaskInstance: Customer_Prosensity_DAG.create_dbstrore_table manual__2024-05-25T04:43:22.435397+00:00 [running]> on host cb453a136ab9
+[2024-05-25T04:43:26.217+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='NhơnVõ' AIRFLOW_CTX_DAG_ID='Customer_Prosensity_DAG' AIRFLOW_CTX_TASK_ID='create_dbstrore_table' AIRFLOW_CTX_EXECUTION_DATE='2024-05-25T04:43:22.435397+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-05-25T04:43:22.435397+00:00'
+[2024-05-25T04:43:26.218+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-25T04:43:26.219+0000] {sql.py:276} INFO - Executing: 
+            CREATE TABLE IF NOT EXISTS DBStore (
+                user_ID TEXT,
+                basket_icon_click INTEGER,
+                basket_add_list INTEGER,
+                basket_add_detail INTEGER,
+                sort_by INTEGER,
+                image_picker INTEGER,
+                account_page_click INTEGER,
+                promo_banner_click INTEGER,
+                detail_wishlist_add INTEGER,
+                list_size_dropdown INTEGER,
+                closed_minibasket_click INTEGER,
+                checked_delivery_detail INTEGER,
+                checked_returns_detail INTEGER,
+                sign_in INTEGER,
+                saw_checkout INTEGER,
+                saw_sizecharts INTEGER,
+                saw_delivery INTEGER,
+                saw_account_upgrade INTEGER,
+                saw_homepage INTEGER,
+                device_computer INTEGER,
+                device_tablet INTEGER,
+                returning_user INTEGER,
+                loc_uk INTEGER,
+                propensity INTEGER,
+                score REAL,  
+                FOREIGN KEY (user_ID) REFERENCES Account(user_ID)
+            );
+        
+[2024-05-25T04:43:26.225+0000] {base.py:84} INFO - Using connection ID 'sqlite_default' for task execution.
+[2024-05-25T04:43:26.233+0000] {base.py:84} INFO - Using connection ID 'sqlite_default' for task execution.
+[2024-05-25T04:43:26.235+0000] {sql.py:470} INFO - Running statement: 
+            CREATE TABLE IF NOT EXISTS DBStore (
+                user_ID TEXT,
+                basket_icon_click INTEGER,
+                basket_add_list INTEGER,
+                basket_add_detail INTEGER,
+                sort_by INTEGER,
+                image_picker INTEGER,
+                account_page_click INTEGER,
+                promo_banner_click INTEGER,
+                detail_wishlist_add INTEGER,
+                list_size_dropdown INTEGER,
+                closed_minibasket_click INTEGER,
+                checked_delivery_detail INTEGER,
+                checked_returns_detail INTEGER,
+                sign_in INTEGER,
+                saw_checkout INTEGER,
+                saw_sizecharts INTEGER,
+                saw_delivery INTEGER,
+                saw_account_upgrade INTEGER,
+                saw_homepage INTEGER,
+                device_computer INTEGER,
+                device_tablet INTEGER,
+                returning_user INTEGER,
+                loc_uk INTEGER,
+                propensity INTEGER,
+                score REAL,  
+                FOREIGN KEY (user_ID) REFERENCES Account(user_ID)
+            );
+        , parameters: None
+[2024-05-25T04:43:26.236+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-25T04:43:26.242+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=Customer_Prosensity_DAG, task_id=create_dbstrore_table, run_id=manual__2024-05-25T04:43:22.435397+00:00, execution_date=20240525T044322, start_date=20240525T044326, end_date=20240525T044326
+[2024-05-25T04:43:26.266+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-05-25T04:43:26.285+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-05-25T04:43:26.287+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
