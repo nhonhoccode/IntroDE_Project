@@ -44,13 +44,13 @@ Nhập tên đăng nhập và mật khẩu của bạn khi được yêu cầu.
 Tag Docker image của bạn với tên repository trên Docker Hub:
 
 ```bash
-docker tag backend:latest diends/backend:de
+docker tag backend:latest nhonvo/finalintrode:1234
 ```
 
 Đẩy Docker image lên Docker Hub:
 
 ```bash
-docker push diends/backend:de
+docker push nhonvo/finalintrode:1234
 ```
 
 ## Bước 5: Chạy Ứng dụng từ Docker Hub
@@ -58,7 +58,7 @@ docker push diends/backend:de
 Bây giờ, bạn có thể chạy ứng dụng backend từ image đã được đẩy lên Docker Hub:
 
 ```bash
-docker run -it --name backend -p 8000:8000 diends/backend:de
+docker run -it --name customer-propensity-to-purchase-main -p 8000:8000 nhonvo/finalintrode:1234
 ```
 
 ---
